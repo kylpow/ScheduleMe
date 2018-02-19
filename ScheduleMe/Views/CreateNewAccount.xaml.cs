@@ -10,31 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 using MahApps.Metro.Controls;
 
-namespace ScheduleMe
+namespace ScheduleMe.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CreateNewAccount.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class CreateNewAccount : MetroWindow
     {
-        public MainWindow()
+        public CreateNewAccount()
         {
             InitializeComponent();
-        }
-
-        private void LoginClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CreateNewAccount(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -29,10 +29,11 @@
         <Button Name="btnLogin"
             Content="LOGIN" 
             HorizontalAlignment="Left" 
-            Margin="69,151,0,0"
+            Margin="73,155,0,0"
             VerticalAlignment="Top" 
             Width="75"
-            Style="{StaticResource AccentedSquareButtonStyle}"/>
+            Style="{StaticResource AccentedSquareButtonStyle}"
+            Click="LoginClick"/>
 
         <Label Content="Welcome..." 
                HorizontalAlignment="Left" 
@@ -42,16 +43,18 @@
         <Label Content="- OR -" 
                HorizontalAlignment="Left" 
                VerticalAlignment="Top" 
-               Margin="88,214,0,0"
+               Margin="87,209,0,0"
+               FontSize="15"
                />
         
         <Button Name="btnCreateNewAccount"
                 Content="Create New Account" 
                 Style="{StaticResource AccentedSquareButtonStyle}"
                 HorizontalAlignment="Left" 
-                Margin="50,271,0,0" 
+                Margin="50,267,0,0" 
                 VerticalAlignment="Top" 
-                Width="120" Click="Button_Click"/>
+                Width="120" 
+                Click="CreateNewAccountClick"/>
         
 
     </Grid>
