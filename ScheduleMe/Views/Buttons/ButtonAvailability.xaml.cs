@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -34,10 +35,12 @@ namespace ScheduleMe.Views.Buttons
                 Dashboard._dashboard.panelView.Children.Clear();
                 Dashboard._dashboard.panelView.Children.Add(new ViewAvailability());
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Sorry, something went wrong! \n\nViews\\Buttons\\Availability\\btnAvailability_Click", "Error",
-                   MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+
+                //MessageBox.Show("Sorry, something went wrong! \n\nViews\\Buttons\\Availability\\btnAvailability_Click", "Error",
+                //   MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
     }

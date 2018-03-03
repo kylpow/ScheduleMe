@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\App.xaml
-11-52042469
+15-177254216
 
-171349750738
+21-1993602815
 16-2086152282
-Views\Buttons\ButtonAvailability.xaml;Views\Buttons\ButtonPersonalInfo.xaml;Views\Buttons\ButtonManageEmployees.xaml;Views\Buttons\ButtonManageShifts.xaml;Views\Buttons\ButtonRequests.xaml;Views\Buttons\ButtonViewShifts.xaml;Views\ButtonViews\ViewAvailability.xaml;Views\ButtonViews\ViewPersonalInfo.xaml;Views\CreateNewAccount.xaml;Views\Dashboard.xaml;Views\MainWindow.xaml;
+Views\Buttons\ButtonAvailability.xaml;Views\Buttons\ButtonPersonalInfo.xaml;Views\Buttons\ButtonManageEmployees.xaml;Views\Buttons\ButtonManageShifts.xaml;Views\Buttons\ButtonRequests.xaml;Views\Buttons\ButtonViewShifts.xaml;Views\ButtonViews\ViewAvailability.xaml;Views\ButtonViews\ViewManageEmployees.xaml;Views\ButtonViews\ViewManageShifts.xaml;Views\ButtonViews\ViewPersonalInfo.xaml;Views\ButtonViews\ViewRequests.xaml;Views\ButtonViews\ViewViewShifts.xaml;Views\CreateNewAccount.xaml;Views\Dashboard.xaml;Views\MainWindow.xaml;
 
 False
 

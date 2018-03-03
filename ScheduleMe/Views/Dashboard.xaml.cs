@@ -72,9 +72,6 @@ namespace ScheduleMe.Views
                 btnViewShifts.Margin = new Thickness(0, 5, 0, 5);
                 panelButton.Children.Add(btnViewShifts);
 
-
-
-
             }
             catch
             {

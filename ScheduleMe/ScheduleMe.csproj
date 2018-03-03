@@ -94,7 +94,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ButtonViews\ViewManageEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ButtonViews\ViewManageShifts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ButtonViews\ViewPersonalInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ButtonViews\ViewRequests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ButtonViews\ViewViewShifts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,8 +148,20 @@
     <Compile Include="Views\ButtonViews\ViewAvailability.xaml.cs">
       <DependentUpon>ViewAvailability.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ButtonViews\ViewManageEmployees.xaml.cs">
+      <DependentUpon>ViewManageEmployees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ButtonViews\ViewManageShifts.xaml.cs">
+      <DependentUpon>ViewManageShifts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ButtonViews\ViewPersonalInfo.xaml.cs">
       <DependentUpon>ViewPersonalInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ButtonViews\ViewRequests.xaml.cs">
+      <DependentUpon>ViewRequests.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ButtonViews\ViewViewShifts.xaml.cs">
+      <DependentUpon>ViewViewShifts.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateNewAccount.xaml.cs">
       <DependentUpon>CreateNewAccount.xaml</DependentUpon>
@@ -181,9 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="profileIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="profileIcon.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

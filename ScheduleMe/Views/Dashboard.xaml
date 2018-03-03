@@ -9,9 +9,8 @@
         x:Class="ScheduleMe.Views.Dashboard"
         mc:Ignorable="d"
         Title="Dashboard" 
-        Height="{Binding SystemParameters.PrimaryScreenHeight}" 
-        Width="{Binding SystemParameters.PrimaryScreenWidth}"
-        ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
+        ResizeMode="CanResizeWithGrip" 
+        WindowStartupLocation="CenterScreen" Height="583.333" Width="808">
 
     <!--<Window.Resources>
         <DataTemplate DataType="{x:Type }">
@@ -32,12 +31,13 @@
 
             </ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Image x:Name="profileIcon"
+
+        <!--<Image x:Name="profileIcon"
                Grid.RowSpan="2"
                Source="/ScheduleMe;component/profileIcon.png" 
                Stretch="Uniform"
                Opacity="0.40" Grid.ColumnSpan="2" Margin="197,0,0.333,0.333"
-               />
+               />-->
 
         <Label Name="lblGreeting"
                Content="Welcome, "
@@ -59,10 +59,10 @@
 
         <StackPanel Name="panelView"
                     HorizontalAlignment="Left" 
-                    Height="380" 
-                    Margin="205,9.667,0,0" 
+                    Height="424" 
+                    Width="586" 
+                    Margin="205,9.333,0,0" 
                     VerticalAlignment="Top" 
-                    Width="550" 
                     Grid.ColumnSpan="2" Grid.Row="1"/>
     </Grid>
 </Controls:MetroWindow>
