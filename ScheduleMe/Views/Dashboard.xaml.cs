@@ -20,11 +20,16 @@ namespace ScheduleMe.Views
     /// </summary>
     public partial class Dashboard : MetroWindow
     {
-        public Dashboard()
+
+
+        public static Dashboard _dashboard;
+
+    public Dashboard()
         {
             InitializeComponent();
             PopulateButtons();
             //PopulateScheduleView();
+            _dashboard = this;
         }
 
         /// <summary>
@@ -37,18 +42,43 @@ namespace ScheduleMe.Views
                 //TODO: if user the user has permissions via database
                 //populate buttons based on that. 
 
-                //panel.controls.add(userControl.Instance);
+                //Personal Info
+                Buttons.ButtonPersonalInfo btnPersonalInfo = new Buttons.ButtonPersonalInfo();
+                btnPersonalInfo.Margin = new Thickness(0, 5, 0, 5);
+                panelButton.Children.Add(btnPersonalInfo);
 
-                //ButtonViews.ViewAvailability viewAvailability = new ButtonViews.ViewAvailability();
+                //Availability Button
                 Buttons.Availability btnavailability = new Buttons.Availability();
+                btnavailability.Margin = new Thickness(0, 5, 0, 5);
                 panelButton.Children.Add(btnavailability);
 
-                
+                //Manage Employees
+                Buttons.ManageEmployees btnManageEmployees = new Buttons.ManageEmployees();
+                btnManageEmployees.Margin = new Thickness(0, 5, 0, 5);
+                panelButton.Children.Add(btnManageEmployees);
+
+                //Manage Shifts
+                Buttons.ManageShifts btnManageShifts = new Buttons.ManageShifts();
+                btnManageShifts.Margin = new Thickness(0, 5, 0, 5);
+                panelButton.Children.Add(btnManageShifts);
+
+                //Requests
+                Buttons.Requests btnRequests = new Buttons.Requests();
+                btnRequests.Margin = new Thickness(0, 5, 0, 5);
+                panelButton.Children.Add(btnRequests);
+
+                //View Shifts
+                Buttons.ViewShifts btnViewShifts = new Buttons.ViewShifts();
+                btnViewShifts.Margin = new Thickness(0, 5, 0, 5);
+                panelButton.Children.Add(btnViewShifts);
+
+
+
 
             }
             catch
             {
-                MessageBox.Show("Sorry, something went wrong!", "Error",
+                MessageBox.Show("Sorry, something went wrong! \n\n[Dashboard.xaml.cs]", "Error",
                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }

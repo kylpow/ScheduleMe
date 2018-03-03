@@ -21,44 +21,24 @@ namespace ScheduleMe.Views.Buttons
     /// </summary>
     public partial class Availability : UserControl
     {
-        ButtonViews.ViewAvailability viewAvailability;
-
         public Availability()
         {
             InitializeComponent();
-            
         }
 
         private void btnAvailability_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                //Buttons.Availability btnavailability = new Buttons.Availability();
-                //panelButton.Children.Add(btnavailability);
-
-                //create new Availability View
-                ButtonViews.ViewAvailability viewAvailability = new ButtonViews.ViewAvailability();
-
-                Window dashboard = Window.GetWindow(this);
-                dashboard.Activate();
-                //panelButton.Children.Add(btnavailability);
-               // Dashboard.panelView.Children.Add(viewAvailability);
-
-
-
-                //apply it to dashboard: panelView
-                //dashboard.panelView.Children.Add(viewAvailability);
-
-                //var dash = new Dashboard();
-                //dash.Show();
+                //Clear panelView of anything and add new View
+                Dashboard._dashboard.panelView.Children.Clear();
+                Dashboard._dashboard.panelView.Children.Add(new ViewAvailability());
             }
             catch
             {
                 MessageBox.Show("Sorry, something went wrong! \n\nViews\\Buttons\\Availability\\btnAvailability_Click", "Error",
                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-
-
         }
     }
 }

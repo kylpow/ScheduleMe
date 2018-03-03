@@ -24,5 +24,10 @@ namespace ScheduleMe.Views.Buttons
         {
             InitializeComponent();
         }
+
+        private void btnViewShifts_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

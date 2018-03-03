@@ -62,28 +62,39 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="IButtonViewModel.cs" />
+    <Compile Include="Views\Buttons\ButtonPersonalInfo.xaml.cs">
+      <DependentUpon>ButtonPersonalInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ButtonViews\PersonalInfoViewModel.cs" />
-    <Page Include="Views\Buttons\Availability.xaml">
+    <Page Include="Views\Buttons\ButtonAvailability.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Buttons\ManageEmployees.xaml">
+    <Page Include="Views\Buttons\ButtonPersonalInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Buttons\ManageShifts.xaml">
+    <Page Include="Views\Buttons\ButtonManageEmployees.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Buttons\Requests.xaml">
+    <Page Include="Views\Buttons\ButtonManageShifts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Buttons\ViewShifts.xaml">
+    <Page Include="Views\Buttons\ButtonRequests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Buttons\ButtonViewShifts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ButtonViews\ViewAvailability.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ButtonViews\ViewPersonalInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,23 +114,26 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\Buttons\Availability.xaml.cs">
-      <DependentUpon>Availability.xaml</DependentUpon>
+    <Compile Include="Views\Buttons\ButtonAvailability.xaml.cs">
+      <DependentUpon>ButtonAvailability.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Buttons\ManageEmployees.xaml.cs">
-      <DependentUpon>ManageEmployees.xaml</DependentUpon>
+    <Compile Include="Views\Buttons\ButtonManageEmployees.xaml.cs">
+      <DependentUpon>ButtonManageEmployees.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Buttons\ManageShifts.xaml.cs">
-      <DependentUpon>ManageShifts.xaml</DependentUpon>
+    <Compile Include="Views\Buttons\ButtonManageShifts.xaml.cs">
+      <DependentUpon>ButtonManageShifts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Buttons\Requests.xaml.cs">
-      <DependentUpon>Requests.xaml</DependentUpon>
+    <Compile Include="Views\Buttons\ButtonRequests.xaml.cs">
+      <DependentUpon>ButtonRequests.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Buttons\ViewShifts.xaml.cs">
-      <DependentUpon>ViewShifts.xaml</DependentUpon>
+    <Compile Include="Views\Buttons\ButtonViewShifts.xaml.cs">
+      <DependentUpon>ButtonViewShifts.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ButtonViews\ViewAvailability.xaml.cs">
       <DependentUpon>ViewAvailability.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ButtonViews\ViewPersonalInfo.xaml.cs">
+      <DependentUpon>ViewPersonalInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateNewAccount.xaml.cs">
       <DependentUpon>CreateNewAccount.xaml</DependentUpon>

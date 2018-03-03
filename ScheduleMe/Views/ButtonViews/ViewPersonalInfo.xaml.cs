@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ScheduleMe.Views.Buttons
+namespace ScheduleMe.Views.ButtonViews
 {
     /// <summary>
-    /// Interaction logic for ManageEmployees.xaml
+    /// Interaction logic for ViewPersonalInfo.xaml
     /// </summary>
-    public partial class ManageEmployees : UserControl
+    public partial class ViewPersonalInfo : UserControl
     {
-        public ManageEmployees()
+        public ViewPersonalInfo()
         {
             InitializeComponent();
         }
