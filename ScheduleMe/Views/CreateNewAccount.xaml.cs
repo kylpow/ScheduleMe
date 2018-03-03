@@ -24,5 +24,35 @@ namespace ScheduleMe.Views
         {
             InitializeComponent();
         }
+
+        private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCancelClick(object sender, RoutedEventArgs e)
+        {
+            //This will go back to main window but on click of a cancel button - not on X
+            MainWindow mw = new MainWindow();
+            this.Close();
+            mw.ShowDialog();
+        }
+
+        /// <summary>
+        /// This will kick the user back to the login screen if they click on 'X'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            this.Hide();
+            mw.ShowDialog();
+        }
     }
 }

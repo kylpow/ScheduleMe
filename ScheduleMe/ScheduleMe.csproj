@@ -61,6 +61,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="IButtonViewModel.cs" />
+    <Compile Include="Views\ButtonViews\PersonalInfoViewModel.cs" />
+    <Page Include="Views\Buttons\Availability.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Buttons\ManageEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Buttons\ManageShifts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Buttons\Requests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Buttons\ViewShifts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ButtonViews\ViewAvailability.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CreateNewAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -76,6 +102,24 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\Buttons\Availability.xaml.cs">
+      <DependentUpon>Availability.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Buttons\ManageEmployees.xaml.cs">
+      <DependentUpon>ManageEmployees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Buttons\ManageShifts.xaml.cs">
+      <DependentUpon>ManageShifts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Buttons\Requests.xaml.cs">
+      <DependentUpon>Requests.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Buttons\ViewShifts.xaml.cs">
+      <DependentUpon>ViewShifts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ButtonViews\ViewAvailability.xaml.cs">
+      <DependentUpon>ViewAvailability.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateNewAccount.xaml.cs">
       <DependentUpon>CreateNewAccount.xaml</DependentUpon>
@@ -118,5 +162,15 @@
   <ItemGroup>
     <Resource Include="Resources\calendar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\profileIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="profileIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="profileIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -36,6 +36,34 @@ namespace ScheduleMe
         /// <param name="e"></param>
         private void LoginClick(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                //TODO - Check database for appropriate credentials - Credential Check:
+                //On valid login:
+                    //If valid, pass userData to Dashboard Form
+                //On invalid login
+                    //Window/label stating to try again - forgot password prompt/show(?) etc.
+
+
+
+                //Hide startup page
+                this.Visibility = Visibility.Hidden;
+
+                //TODO: 
+                //Dashboard dashboard = new Dashboard(userData);
+                Dashboard dashboard = new Dashboard();
+                dashboard.ShowDialog();
+
+                //TODO: Close mainWindow - on valid login, handle this in the dashboard. The code doesn't 
+                //return to this line until after so we want to close the window. 
+                this.Close();
+
+            }
+            catch
+            {
+                MessageBox.Show("Hmm... Something went wrong!",
+                    "Uh-Oh!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
 
         }
 
@@ -55,7 +83,7 @@ namespace ScheduleMe
                 CreateNewAccount createNewAccount = new CreateNewAccount();
                 createNewAccount.ShowDialog();
 
-                //For now, this will close the application
+                //TODO: For now, this will close the application
                 this.Close();
             }
             catch

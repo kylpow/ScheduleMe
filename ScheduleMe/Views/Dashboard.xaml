@@ -1,12 +1,68 @@
-﻿<Window x:Class="ScheduleMe.Views.Dashboard"
+﻿<Controls:MetroWindow
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScheduleMe.Views"
+        xmlns:Buttons="clr-namespace:ScheduleMe.Views.Buttons" 
+        x:Class="ScheduleMe.Views.Dashboard"
         mc:Ignorable="d"
-        Title="Dashboard" Height="300" Width="300">
+        Title="Dashboard" 
+        Height="{Binding SystemParameters.PrimaryScreenHeight}" 
+        Width="{Binding SystemParameters.PrimaryScreenWidth}"
+        ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
+
+    <!--<Window.Resources>
+        <DataTemplate DataType="{x:Type }">
+            <Buttons:PersonalInfoUpdate />
+        </DataTemplate>
+    </Window.Resources>-->
+
     <Grid>
-        
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="4*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="205*" />
+            <ColumnDefinition Width="556*" >
+
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="profileIcon"
+               Grid.RowSpan="2"
+               Source="/ScheduleMe;component/profileIcon.png" 
+               Stretch="Uniform"
+               Opacity="0.40" Grid.ColumnSpan="2" Margin="197,0,0.333,0.333"
+               />
+
+        <Label Name="lblGreeting"
+               Content="Welcome, "
+               HorizontalAlignment="Center" 
+               Margin="15,15,5.333,5.333" 
+               VerticalAlignment="Center" 
+               Grid.ColumnSpan="2" 
+               Height="81" 
+               Width="741" 
+               FontSize="36"
+               />
+        <StackPanel Name="panelButton"
+                    HorizontalAlignment="Left" 
+                    Height="404" 
+                    Margin="10,101,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="182" 
+                    Grid.RowSpan="2"/>
+
+        <StackPanel Name="panelView"
+                    HorizontalAlignment="Left" 
+                    Height="380" 
+                    Margin="205,9.667,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="550" 
+                    Grid.ColumnSpan="2" Grid.Row="1"/>
     </Grid>
-</Window>
+</Controls:MetroWindow>

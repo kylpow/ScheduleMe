@@ -9,7 +9,7 @@
         Title="Create A New Account" 
         Height="{Binding SystemParameters.PrimaryScreenHeight}" 
         Width="{Binding SystemParameters.PrimaryScreenWidth}"
-        ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
+        ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" Closing="MetroWindow_Closing" >
 
     <!--<Grid >
         <Grid.RowDefinitions>
@@ -36,7 +36,8 @@
                Source="/Resources/calendar.png" 
                Opacity=".5"
                Stretch="Uniform"
-                HorizontalAlignment="Right"/>
+               HorizontalAlignment="Right"
+               Margin="0,0,20,0"/>
 
         <Label 
             Margin="25"
@@ -97,6 +98,25 @@
                  VerticalAlignment="Top" 
                  Width="200"
                  Controls:TextBoxHelper.Watermark="Phone Number" />
+
+            <Button  Name="btnCreateAccount"
+                     HorizontalAlignment="Left" 
+                     Height="23" 
+                     Margin="120,50,0,0" 
+                     VerticalAlignment="Top" 
+                     Width="120"
+                     Content="Create New Account"
+                     Style="{StaticResource AccentedSquareButtonStyle}" Click="btnCreateAccount_Click"/>
+
+            <Button  Name="btnCancel"
+                     HorizontalAlignment="Left" 
+                     Height="23" 
+                     Margin="120,10,0,0" 
+                     VerticalAlignment="Top" 
+                     Width="120"
+                     Content="Cancel"
+                     Style="{StaticResource AccentedSquareButtonStyle}" Click="btnCancelClick"/>
+
         </StackPanel>
     </Grid>
 
