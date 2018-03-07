@@ -85,3 +85,4 @@ C:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\obj\Debug\ScheduleMe.csproj.Generat
 C:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\obj\Debug\ScheduleMe.csproj.CoreCompileInputs.cache
 C:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\obj\Debug\ScheduleMe.exe
 C:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\obj\Debug\ScheduleMe.pdb
+C:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\obj\Debug\ScheduleMe.csprojResolveAssemblyReference.cache

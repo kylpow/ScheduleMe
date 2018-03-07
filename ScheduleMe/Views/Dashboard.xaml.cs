@@ -20,8 +20,6 @@ namespace ScheduleMe.Views
     /// </summary>
     public partial class Dashboard : MetroWindow
     {
-
-
         public static Dashboard _dashboard;
 
     public Dashboard()
