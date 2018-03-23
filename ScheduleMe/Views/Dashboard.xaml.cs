@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,7 +27,7 @@ namespace ScheduleMe.Views
         {
             InitializeComponent();
             PopulateButtons();
-            //PopulateScheduleView();
+            PopulateScheduleView();
             _dashboard = this;
         }
 
@@ -39,6 +40,11 @@ namespace ScheduleMe.Views
             {
                 //TODO: if user the user has permissions via database
                 //populate buttons based on that. 
+
+                //View Schedule
+                Buttons.ButtonViewSchedule btnViewSchedule = new Buttons.ButtonViewSchedule();
+                btnViewSchedule.Margin = new Thickness(0, 5, 0, 5);
+                panelButton.Children.Add(btnViewSchedule);
 
                 //Personal Info
                 Buttons.ButtonPersonalInfo btnPersonalInfo = new Buttons.ButtonPersonalInfo();
@@ -71,10 +77,12 @@ namespace ScheduleMe.Views
                 panelButton.Children.Add(btnViewShifts);
 
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Sorry, something went wrong! \n\n[Dashboard.xaml.cs]", "Error",
-                   MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+
+                //MessageBox.Show("Sorry, something went wrong! \n\n[Dashboard.xaml.cs]", "Error",
+                //   MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
@@ -83,7 +91,14 @@ namespace ScheduleMe.Views
         /// </summary>
         private void PopulateScheduleView()
         {
-
+            try
+            {
+                panelView.Children.Add(new ViewSchedule());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+            }
         }
 
 

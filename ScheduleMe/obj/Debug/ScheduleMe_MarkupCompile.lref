@@ -1,12 +1,12 @@
 ﻿
-FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\App.xaml;;
+
 FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\Buttons\ButtonAvailability.xaml;;
 FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\Buttons\ButtonPersonalInfo.xaml;;
 FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\Buttons\ButtonManageEmployees.xaml;;
 FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\Buttons\ButtonManageShifts.xaml;;
 FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\Buttons\ButtonRequests.xaml;;
+FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\Buttons\ButtonViewSchedule.xaml;;
 FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\Buttons\ButtonViewShifts.xaml;;
-FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\ButtonViews\ViewAvailability.xaml;;
 FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\ButtonViews\ViewManageEmployees.xaml;;
 FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\ButtonViews\ViewManageShifts.xaml;;
 FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\ButtonViews\ViewPersonalInfo.xaml;;
@@ -15,4 +15,5 @@ FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\ButtonViews\ViewViewShifts.x
 FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\CreateNewAccount.xaml;;
 FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\Dashboard.xaml;;
 FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\MainWindow.xaml;;
+FC:\Users\kypow\Desktop\ScheduleMe\ScheduleMe\Views\ButtonViews\ViewSchedule.xaml;;
 

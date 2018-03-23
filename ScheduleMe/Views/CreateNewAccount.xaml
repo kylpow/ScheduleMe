@@ -7,9 +7,10 @@
         xmlns:local="clr-namespace:ScheduleMe.Views"
         mc:Ignorable="d"
         Title="Create A New Account" 
-        Height="{Binding SystemParameters.PrimaryScreenHeight}" 
-        Width="{Binding SystemParameters.PrimaryScreenWidth}"
-        ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" Closing="MetroWindow_Closing" >
+        Height="540" 
+        Width="770"
+        ResizeMode="CanResizeWithGrip" 
+        WindowStartupLocation="CenterScreen">
 
     <!--<Grid >
         <Grid.RowDefinitions>
@@ -31,93 +32,154 @@
                Content="Create a New Account" />
     </Grid>-->
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="382*"/>
+            <ColumnDefinition Width="379*"/>
+        </Grid.ColumnDefinitions>
+
         <Image x:Name="calendarPic" 
                Source="/Resources/calendar.png" 
                Opacity=".5"
                Stretch="Uniform"
-               HorizontalAlignment="Right"
-               Margin="0,0,20,0"/>
+               HorizontalAlignment="Center"
+               Margin="0,0,20.333,0.333" Grid.ColumnSpan="2"/>
 
         <Label 
-            Margin="25"
+            Margin="25,25,25,25"
             FontSize="20"
-            Content="Please enter your information to create a new account"/>
+            Content="Create a new account" 
+            Grid.ColumnSpan="2"/>
 
-        <StackPanel Margin="10,20,0,0">
-        <TextBox x:Name="txtEstablishmentName"
-                 HorizontalAlignment="Left" 
-                 Height="23" 
-                 Margin="100,75,0,0" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top" 
-                 Width="200"
-                 Controls:TextBoxHelper.Watermark="Establishment Name" />
+        <Grid Margin="10,20,0.333,0.333" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="365*"/>
+                <ColumnDefinition Width="386*"/>
+            </Grid.ColumnDefinitions>
 
-        <TextBox x:Name="txtFirstName"
-                 HorizontalAlignment="Left" 
+            <Label Margin="0,80,200,375"
+                   Content="Tell us about yourself:"
+                 HorizontalAlignment="right" 
+                   Height="30"
+                   />
+
+            <TextBox x:Name="txtFirstName"
+                 HorizontalAlignment="right" 
                  Height="23" 
-                 Margin="100,20,0,0" 
+                 Margin="100,110,50,0" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
                  Width="200"
                  Controls:TextBoxHelper.Watermark="First Name" />
 
-        <TextBox x:Name="txtLastName"
-                 HorizontalAlignment="Left" 
+            <TextBox x:Name="txtLastName"
+                 HorizontalAlignment="Right" 
                  Height="23" 
-                 Margin="100,20,0,0" 
+                 Margin="100,160,50,0" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
                  Width="200"
                  Controls:TextBoxHelper.Watermark="Last Name" />
 
-        <TextBox x:Name="txtUserName"
-                 HorizontalAlignment="Left" 
+            <TextBox x:Name="txtAddress"
+                 HorizontalAlignment="Right" 
                  Height="23" 
-                 Margin="100,20,0,0" 
+                 Margin="100,210,50,0" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
                  Width="200"
-                 Controls:TextBoxHelper.Watermark="User Name" />
+                 Controls:TextBoxHelper.Watermark="Address" />
 
-        <TextBox x:Name="txtEmail"
+            <TextBox x:Name="txtPhoneNumber1"
+                 HorizontalAlignment="Right" 
+                 Height="23" 
+                 Margin="100,260,50,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="200"
+                 Controls:TextBoxHelper.Watermark="Mobile Number" />
+
+            <TextBox x:Name="txtPhoneNumber2"
+                 HorizontalAlignment="Right" 
+                 Height="23" 
+                 Margin="100,310,50,0" 
+                 TextWrapping="NoWrap"
+                 VerticalAlignment="Top" 
+                 Width="200"
+                 Controls:TextBoxHelper.Watermark="Home Number (Optional)" />
+            
+            <TextBox x:Name="txtEstablishmentName"
+                     Grid.Column="1"
                  HorizontalAlignment="Left" 
                  Height="23" 
-                 Margin="100,20,0,0" 
-                 TextWrapping="NoWrap"
+                 Margin="50,110,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="200"
+                 Controls:TextBoxHelper.Watermark="Establishment Name" />
+
+            <TextBox x:Name="txtEmail"
+                 Grid.Column="1"
+                 HorizontalAlignment="Left" 
+                 Height="23" 
+                 Margin="50,160,0,0" 
                  VerticalAlignment="Top" 
                  Width="200"
                  Controls:TextBoxHelper.Watermark="Email Address" />
 
-        <TextBox x:Name="txtPhoneNumber"
+            <Label
+                Grid.Column="2"
+                Content="Create your credentials:"
+                 HorizontalAlignment="Left" 
+                Height="30"
+                
+                />
+
+            <TextBox x:Name="txtUserName"
+                     Grid.Column="2"
                  HorizontalAlignment="Left" 
                  Height="23" 
-                 Margin="100,20,0,0" 
+                 Margin="50,260,0,0" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
                  Width="200"
-                 Controls:TextBoxHelper.Watermark="Phone Number" />
+                 Controls:TextBoxHelper.Watermark="UserName" />
 
+            <PasswordBox x:Name="txtPassword"
+                     Grid.Column="2"
+                 HorizontalAlignment="Left" 
+                 Height="23" 
+                 Margin="50,310,0,0" 
+                 VerticalAlignment="Top" 
+                 Width="200"
+                 Controls:TextBoxHelper.Watermark="Password" />
+
+            
             <Button  Name="btnCreateAccount"
+                     Grid.Column="2"
                      HorizontalAlignment="Left" 
                      Height="23" 
-                     Margin="120,50,0,0" 
+                     Margin="50,390,0,0" 
                      VerticalAlignment="Top" 
                      Width="120"
                      Content="Create New Account"
-                     Style="{StaticResource AccentedSquareButtonStyle}" Click="btnCreateAccount_Click"/>
+                     Style="{StaticResource AccentedSquareButtonStyle}" 
+                     Click="btnCreateAccount_Click"/>
 
             <Button  Name="btnCancel"
+                     Grid.Column="2"
                      HorizontalAlignment="Left" 
                      Height="23" 
-                     Margin="120,10,0,0" 
+                     Margin="50,435,0,0" 
                      VerticalAlignment="Top" 
                      Width="120"
                      Content="Cancel"
-                     Style="{StaticResource AccentedSquareButtonStyle}" Click="btnCancelClick"/>
+                     Style="{StaticResource AccentedSquareButtonStyle}" 
+                     Click="btnCancelClick"/>
 
-        </StackPanel>
+           
+            
+           
+        </Grid>
     </Grid>
 
 </Controls:MetroWindow>

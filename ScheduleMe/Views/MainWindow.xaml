@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:ScheduleMe"
         mc:Ignorable="d"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="ScheduleMe" Height="360" Width="234" WindowStartupLocation="CenterScreen">
+        Title="ScheduleMe" Height="360" Width="234" WindowStartupLocation="CenterScreen"
+        Closing="MetroWindow_Closing"
+        >
     <Grid>
         <TextBox Name="txtUserName"
                  HorizontalAlignment="Left" 

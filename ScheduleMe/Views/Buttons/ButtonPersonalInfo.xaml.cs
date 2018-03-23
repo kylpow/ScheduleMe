@@ -20,6 +20,7 @@ namespace ScheduleMe.Views.Buttons
     /// <summary>
     /// Interaction logic for ButtonPersonalInfo.xaml
     /// </summary>
+    /// 
     public partial class ButtonPersonalInfo : UserControl
     {
         public ButtonPersonalInfo()
@@ -33,7 +34,7 @@ namespace ScheduleMe.Views.Buttons
             {
                 //Clear panelView of anything and add new View
                 Dashboard._dashboard.panelView.Children.Clear();
-                Dashboard._dashboard.panelView.Children.Add(new ViewPersonalInfo());
+                Dashboard._dashboard.panelView.Children.Add(new ViewPersonalInfo(Dashboard._dashboard));
             }
             catch (Exception ex)
             {

@@ -16,6 +16,7 @@ using ScheduleMe.Views;
 
 
 using MahApps.Metro.Controls;
+using System.Reflection;
 
 namespace ScheduleMe
 {
@@ -26,7 +27,18 @@ namespace ScheduleMe
     {
         public MainWindow()
         {
-            InitializeComponent();
+            try
+
+            {
+                InitializeComponent();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+
+                // Log error (including InnerExceptions!)
+                // Handle exception
+            }
         }
 
         /// <summary>
@@ -64,7 +76,6 @@ namespace ScheduleMe
                 MessageBox.Show("Hmm... Something went wrong!",
                     "Uh-Oh!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-
         }
 
         /// <summary>
@@ -76,22 +87,24 @@ namespace ScheduleMe
         {
             try
             {
-                //hide initial page
                 this.Visibility = Visibility.Hidden;
 
                 //Create new window and show it
-                CreateNewAccount createNewAccount = new CreateNewAccount();
+                CreateNewAccount createNewAccount = new CreateNewAccount(this);
                 createNewAccount.ShowDialog();
 
-                //TODO: For now, this will close the application
-                this.Close();
+                this.Visibility = Visibility.Visible;
             }
             catch
             {
                 MessageBox.Show("Hmm... Something went wrong!",
                     "Uh-Oh!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+        }
 
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

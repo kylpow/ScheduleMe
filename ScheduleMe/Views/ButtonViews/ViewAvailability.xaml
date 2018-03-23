@@ -1,15 +1,207 @@
-﻿<UserControl x:Class="ScheduleMe.Views.ButtonViews.ViewAvailability"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ScheduleMe.Views.ButtonViews"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    x:Class="ScheduleMe.Views.ButtonViews.ViewAvailability"
              mc:Ignorable="d" 
-             Width="550"
-             Height="380">
-    <Grid>
-        <Calendar HorizontalAlignment="Center"
-                  VerticalAlignment="Center" Height="213" Margin="192,66,174,111" Width="184"/>
+             Width="600"
+             Height="375" Background="White" >
+    <UserControl.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform/>
+            <SkewTransform/>
+            <RotateTransform/>
+            <TranslateTransform/>
+        </TransformGroup>
+    </UserControl.RenderTransform>
+
+    <Grid x:Name="gridAvailability"
+            HorizontalAlignment="Center" 
+              VerticalAlignment="Top"
+              Margin="0,70,0,0"
+              Height="200"
+              Width="580">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="56*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="24*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Sunday" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="14,0" Height="26" Width="48"/>
+        <Label Content="Monday" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="11,0,11.333,0" Height="26" Width="53"/>
+        <Label Content="Tuesday" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="11.667,0,11.333,0" Height="26" Width="53"/>
+        <Label Content="Wednesday" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="4.667,0,0.333,0" Height="26" Width="71"/>
+        <Label Content="Thursday" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="8.667,0" Height="26" Width="58"/>
+        <Label Content="Friday" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="17.333,0,16.667,0" Height="26" Width="42"/>
+        <Label Content="Saturday" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="9.333,0,9,0" Height="26" Width="57"/>
+
+        <Border BorderThickness="1" BorderBrush="Black" Grid.ColumnSpan="7" Grid.RowSpan="1" />
+        <Border BorderThickness="1" BorderBrush="Black" Grid.ColumnSpan="7" Grid.RowSpan="5" />
+        <Border BorderThickness="1" BorderBrush="Black" Grid.RowSpan="5" Grid.ColumnSpan="1" />
+        <Border BorderThickness="1" BorderBrush="Black" Grid.RowSpan="5" Grid.Column="1" />
+        <Border BorderThickness="1" BorderBrush="Black" Grid.RowSpan="5" Grid.Column="2" />
+        <Border BorderThickness="1" BorderBrush="Black" Grid.RowSpan="5" Grid.Column="3" />
+        <Border BorderThickness="1" BorderBrush="Black" Grid.RowSpan="5" Grid.Column="4" />
+        <Border BorderThickness="1" BorderBrush="Black" Grid.RowSpan="5" Grid.Column="5" />
+        <Border BorderThickness="1" BorderBrush="Black" Grid.RowSpan="5" Grid.Column="6" />
+
+        <Border Grid.Column="0" Grid.Row="1">
+            <ComboBox x:Name="cbxSundayBegin" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Loaded="ComboBox_Loaded" IsEnabled="False"  />
+        </Border>
+        <Border Grid.Row="2" >
+            <ComboBox x:Name="cbxSundayEnd" HorizontalAlignment="Center" Height="20" VerticalAlignment="Bottom" Loaded="ComboBox_Loaded" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="3">
+            <CheckBox x:Name="chkSundayAny" Content="Any" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="5,0,0,0" Checked="chkSundayAny_Checked" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="4">
+            <CheckBox x:Name="chkSundayNone" Content="None" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="5,0,0,0" Checked="chkSundayNone_Checked" IsEnabled="False"/>
+        </Border>
+        <!--SUNDAY-->
+
+        <!--MONDAY-->
+        <Border Grid.Column="1" Grid.Row="1">
+            <ComboBox x:Name="cbxMondayBegin" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Loaded="ComboBox_Loaded" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="2">
+            <ComboBox x:Name="cbxMondayEnd" HorizontalAlignment="Center" Height="20" VerticalAlignment="Bottom" Loaded="ComboBox_Loaded" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="1">
+            <CheckBox x:Name="chkMondayAny" Content="Any" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="5,0,0,0" Checked="chkMondayAny_Checked" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="1">
+            <CheckBox x:Name="chkMondayNone" Content="None" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="5,0,0,0" Checked="chkMondayNone_Checked" IsEnabled="False"/>
+        </Border>
+        <!--MONDAY-->
+
+        <!--TUESDAY-->
+        <Border Grid.Column="2" Grid.Row="1">
+            <ComboBox x:Name="cbxTuesdayBegin" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Loaded="ComboBox_Loaded" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Column="2" Grid.Row="2">
+            <ComboBox x:Name="cbxTuesdayEnd" HorizontalAlignment="Center" Height="20" VerticalAlignment="Bottom" Loaded="ComboBox_Loaded" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="2">
+            <CheckBox x:Name="chkTuesdayAny" Content="Any" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="5,0,0,0" Checked="chkTuesdayAny_Checked" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="2">
+            <CheckBox x:Name="chkTuesdayNone" Content="None" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="5,0,0,0" Checked="chkTuesdayNone_Checked" IsEnabled="False"/>
+        </Border>
+        <!--TUESDAY-->
+
+        <!--WEDNESDAY-->
+        <Border Grid.Column="3" Grid.Row="1">
+            <ComboBox x:Name="cbxWednesdayBegin" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Loaded="ComboBox_Loaded" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Column="3" Grid.Row="2">
+            <ComboBox x:Name="cbxWednesdayEnd" HorizontalAlignment="Center" Height="20" VerticalAlignment="Bottom" Loaded="ComboBox_Loaded" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="3">
+            <CheckBox x:Name="chkWednesdayAny" Content="Any" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="5,0,0,0" Checked="chkWednesdayAny_Checked" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="3">
+            <CheckBox x:Name="chkWednesdayNone" Content="None" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="5,0,0,0" Checked="chkWednesdayNone_Checked" IsEnabled="False"/>
+        </Border>
+        <!--WEDNESDAY-->
+
+        <!--THURSDAY-->
+        <Border Grid.Column="4" Grid.Row="1">
+            <ComboBox x:Name="cbxThursdayBegin" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Loaded="ComboBox_Loaded" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Column="4" Grid.Row="2">
+            <ComboBox x:Name="cbxThursdayEnd" HorizontalAlignment="Center" Height="20" VerticalAlignment="Bottom" Loaded="ComboBox_Loaded" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="4">
+            <CheckBox x:Name="chkThursdayAny" Content="Any" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="5,0,0,0" Checked="chkThursdayAny_Checked" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="4">
+            <CheckBox x:Name="chkThursdayNone" Content="None" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="5,0,0,0" Checked="chkThursdayNone_Checked" IsEnabled="False"/>
+        </Border>
+        <!--THURSDAY-->
+
+
+        <!--FRIDAY-->
+        <Border Grid.Column="5" Grid.Row="1">
+            <ComboBox x:Name="cbxFridayBegin" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Loaded="ComboBox_Loaded" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Column="5" Grid.Row="2">
+            <ComboBox x:Name="cbxFridayEnd" HorizontalAlignment="Center" Height="20" VerticalAlignment="Bottom" Loaded="ComboBox_Loaded" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="5">
+            <CheckBox x:Name="chkFridayAny" Content="Any" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="5,0,0,0" Checked="chkFridayAny_Checked" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="5">
+            <CheckBox x:Name="chkFridayNone" Content="None" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="5,0,0,0" Checked="chkFridayNone_Checked" IsEnabled="False"/>
+        </Border>
+        <!--FRIDAY-->
+
+        <!--SATURDAY-->
+        <Border Grid.Column="6" Grid.Row="1">
+            <ComboBox x:Name="cbxSaturdayBegin" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Loaded="ComboBox_Loaded" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Column="6" Grid.Row="2">
+            <ComboBox x:Name="cbxSaturdayEnd" HorizontalAlignment="Center" Height="20" VerticalAlignment="Bottom" Loaded="ComboBox_Loaded" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="6">
+            <CheckBox x:Name="chkSaturdayAny" Content="Any" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="8,0,0,0" Checked="chkSaturdayAny_Checked" IsEnabled="False"/>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="6">
+            <CheckBox x:Name="chkSaturdayNone" Content="None" HorizontalAlignment="Left" Height="15" VerticalAlignment="Center" Margin="8,0,0,0" Checked="chkSaturdayNone_Checked" IsEnabled="False"/>
+        </Border>
+        <!--SATURDAY-->
+
+        <Button x:Name="btnUpdateAvailability"
+                Grid.ColumnSpan="2" 
+                Content="Update" 
+                HorizontalAlignment="Left" 
+                Height="26" 
+                Margin="0,-54,0,0" 
+                VerticalAlignment="Top" 
+                Width="98" Click="btnUpdateAvailability_Click"/>
+
+        <Button x:Name="btnDoneAvailability"
+                Grid.ColumnSpan="2" 
+                Content="Finished" 
+                Grid.Column="5" 
+                HorizontalAlignment="Left" 
+                Height="25" 
+                Margin="56.333,50,0,-51" 
+                Grid.Row="4" 
+                VerticalAlignment="Top" 
+                Width="86"
+                Visibility="Hidden"
+                Click="btnDoneAvailability_Click"/>
+
+
+        <Label Content="Begin Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Row="1" Grid.Column="0"/>
+        <Label Content="End Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Row="2" Grid.Column="0"/>
+        <Label Content="Begin Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Column="1" Grid.Row="1"/>
+        <Label Content="End Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Column="1" Grid.Row="2"/>
+        <Label Content="Begin Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Column="2" Grid.Row="1"/>
+        <Label Content="End Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Column="2" Grid.Row="2"/>
+        <Label Content="Begin Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Column="3" Grid.Row="1"/>
+        <Label Content="End Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Column="3" Grid.Row="2"/>
+        <Label Content="Begin Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Column="4" Grid.Row="1"/>
+        <Label Content="End Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Column="4" Grid.Row="2"/>
+        <Label Content="Begin Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Column="5" Grid.Row="1"/>
+        <Label Content="End Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Column="5" Grid.Row="2"/>
+        <Label Content="Begin Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Column="6" Grid.Row="1"/>
+        <Label Content="End Time:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="26" Grid.Column="6" Grid.Row="2"/>
+
+
 
     </Grid>
 </UserControl>

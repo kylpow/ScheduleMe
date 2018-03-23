@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title="Dashboard" 
         ResizeMode="CanResizeWithGrip" 
-        WindowStartupLocation="CenterScreen" Height="583.333" Width="808">
+        WindowStartupLocation="CenterScreen" Height="583.333" Width="850">
 
     <!--<Window.Resources>
         <DataTemplate DataType="{x:Type }">
@@ -59,10 +59,8 @@
 
         <StackPanel Name="panelView"
                     HorizontalAlignment="Left" 
-                    Height="424" 
-                    Width="586" 
-                    Margin="205,9.333,0,0" 
-                    VerticalAlignment="Top" 
-                    Grid.ColumnSpan="2" Grid.Row="1"/>
+                    Height="433" 
+                    Width="606" 
+                    VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" />
     </Grid>
 </Controls:MetroWindow>

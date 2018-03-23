@@ -20,9 +20,19 @@ namespace ScheduleMe.Views.ButtonViews
     /// </summary>
     public partial class ViewPersonalInfo : UserControl
     {
-        public ViewPersonalInfo()
+        public static Dashboard _dashboard;
+        public ViewPersonalInfo(Dashboard dashboard)
         {
+            _dashboard = dashboard;
             InitializeComponent();
         }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            btnDone.Visibility = Visibility.Visible;
+            btnUpdate.IsEnabled = false;
+        }
+
+       
     }
 }
