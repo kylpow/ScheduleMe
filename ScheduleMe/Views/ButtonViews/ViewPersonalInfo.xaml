@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ScheduleMe.Views.ButtonViews"
              mc:Ignorable="d" 
              Width="550"
-             Height="380" Background="#FFFEF9F9">
+             Height="380">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -21,10 +21,11 @@
         </Grid.ColumnDefinitions>
 
         <Image x:Name="profileIcon"
-               Grid.RowSpan="2"
+               Grid.RowSpan="3"
+               HorizontalAlignment="Right"
                Source="/ScheduleMe;component/profileIcon.png" 
                Stretch="Uniform"
-               Opacity="0.40" 
+               Opacity="0.20" 
                Grid.ColumnSpan="3" 
                />
 
