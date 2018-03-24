@@ -21,11 +21,13 @@ namespace ScheduleMe.Views.ButtonViews
     /// </summary>
     public partial class ViewAvailability : UserControl
     {
+        private bool onLoad;
 
         public ViewAvailability()
         {
-            InitializeComponent();
             PopulateComboBoxes();
+            InitializeComponent();
+            
         }
 
         private void PopulateComboBoxes()
@@ -52,8 +54,14 @@ namespace ScheduleMe.Views.ButtonViews
             if (chkSundayAny.IsChecked == true)
                 chkSundayNone.IsChecked = false;
 
-            cbxSundayBegin.SelectedValue = "12:00 AM";
-            cbxSundayEnd.SelectedValue = "11:30 PM";
+            if (MessageBox.Show("Change availability to 'Any'?", "Attention:", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
+            {
+                cbxSundayBegin.SelectedValue = "12:00 AM";
+                cbxSundayEnd.SelectedValue = "11:30 PM";
+            }
+            else
+                chkSundayAny.IsChecked = false;
+            
         }
 
         private void chkSundayNone_Checked(object sender, RoutedEventArgs e)
@@ -61,8 +69,14 @@ namespace ScheduleMe.Views.ButtonViews
             if (chkSundayNone.IsChecked == true)
                 chkSundayAny.IsChecked = false;
 
-            cbxSundayBegin.SelectedIndex = 0;
-            cbxSundayEnd.SelectedIndex = 0;
+            if (MessageBox.Show("Change availability to 'None'?", "Attention:", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
+            {
+                cbxSundayBegin.SelectedIndex = 0;
+                cbxSundayEnd.SelectedIndex = 0;
+            }
+            else
+                chkSundayNone.IsChecked = false;
+            
         }
 
         private void chkMondayAny_Checked(object sender, RoutedEventArgs e)
@@ -175,6 +189,8 @@ namespace ScheduleMe.Views.ButtonViews
 
         private void ComboBox_Loaded(object sender, RoutedEventArgs e)
         {
+            onLoad = true;
+
             List<string> data = new List<string>();
             data.Add("--");
             data.Add("12:00 AM");
@@ -315,6 +331,14 @@ namespace ScheduleMe.Views.ButtonViews
             cbxSaturdayEnd.IsEnabled = false;
 
             btnDoneAvailability.Visibility = Visibility.Hidden;
+        }
+
+        private void cbxSundayBegin_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!onLoad)
+            {
+                
+            }
         }
     }
 }

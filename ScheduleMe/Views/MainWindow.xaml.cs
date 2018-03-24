@@ -50,26 +50,38 @@ namespace ScheduleMe
         {
             try
             {
-                //TODO - Check database for appropriate credentials - Credential Check:
-                //On valid login:
+                //if (txtUserName.Text == "" || string.IsNullOrEmpty(txtUserName.Text.ToString()))
+                //{
+                //    lblStatus.Foreground = Brushes.Red;
+                //    lblStatus.Content = "Please enter a Username";
+                //}
+                //else if (txtPassword.Password == "" || string.IsNullOrEmpty(txtPassword.Password.ToString()))
+                //{
+                //    lblStatus.Foreground = Brushes.Red;
+                //    lblStatus.Content = "Please enter a Password";
+                //}
+                //else
+                //{
+                    //TODO - Check database for appropriate credentials - Credential Check:
+                    //On valid login:
                     //If valid, pass userData to Dashboard Form
-                //On invalid login
+                    //On invalid login
                     //Window/label stating to try again - forgot password prompt/show(?) etc.
 
 
 
-                //Hide startup page
-                this.Visibility = Visibility.Hidden;
+                    //Hide startup page
+                    this.Visibility = Visibility.Hidden;
 
-                //TODO: 
-                //Dashboard dashboard = new Dashboard(userData);
-                Dashboard dashboard = new Dashboard();
-                dashboard.ShowDialog();
+                    //TODO: 
+                    //Dashboard dashboard = new Dashboard(userData);
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.ShowDialog();
 
-                //TODO: Close mainWindow - on valid login, handle this in the dashboard. The code doesn't 
-                //return to this line until after so we want to close the window. 
-                this.Close();
-
+                    //TODO: Close mainWindow - on valid login, handle this in the dashboard. The code doesn't 
+                    //return to this line until after so we want to close the window. 
+                    this.Close();
+                //}
             }
             catch
             {
@@ -105,6 +117,16 @@ namespace ScheduleMe
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void txtUserName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lblStatus.Content = "";
+        }
+
+        private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            lblStatus.Content = "";
         }
     }
 }

@@ -24,5 +24,12 @@ namespace ScheduleMe.Views
         {
             InitializeComponent();
         }
+
+        private void lblTodaysDate_Loaded(object sender, RoutedEventArgs e)
+        {
+            lblTodaysDate.Content = "Today is:\t " + DateTime.Now.ToString("dddd, MMMM dd, yyyy");
+        }
+
+
     }
 }

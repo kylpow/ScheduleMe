@@ -96,8 +96,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataAccess.cs" />
+    <Compile Include="Model\DataAccess.cs" />
     <Compile Include="IButtonViewModel.cs" />
+    <Compile Include="Model\ObservableObject.cs" />
+    <Compile Include="Model\ScheduleMeAccess.cs" />
+    <Compile Include="ViewModel\smEstablishment.cs" />
+    <Compile Include="ViewModel\smEstablishmentRoles.cs" />
+    <Compile Include="ViewModel\smPermissions.cs" />
+    <Compile Include="ViewModel\smRolePermissions.cs" />
+    <Compile Include="ViewModel\smRoles.cs" />
+    <Compile Include="ViewModel\smShifts.cs" />
+    <Compile Include="ViewModel\smUser.cs" />
+    <Compile Include="ViewModel\smUserAvailability.cs" />
+    <Compile Include="ViewModel\smUserEstablishment.cs" />
+    <Compile Include="ViewModel\smUserRequests.cs" />
+    <Compile Include="ViewModel\smUserShifts.cs" />
+    <Compile Include="ViewModel\smZipCode.cs" />
     <Compile Include="Views\Buttons\ButtonPersonalInfo.xaml.cs">
       <DependentUpon>ButtonPersonalInfo.xaml</DependentUpon>
     </Compile>

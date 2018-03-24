@@ -59,7 +59,7 @@
         <Border BorderThickness="1" BorderBrush="Black" Grid.RowSpan="5" Grid.Column="6" />
 
         <Border Grid.Column="0" Grid.Row="1">
-            <ComboBox x:Name="cbxSundayBegin" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Loaded="ComboBox_Loaded" IsEnabled="False"  />
+            <ComboBox x:Name="cbxSundayBegin" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Loaded="ComboBox_Loaded" IsEnabled="False" />
         </Border>
         <Border Grid.Row="2" >
             <ComboBox x:Name="cbxSundayEnd" HorizontalAlignment="Center" Height="20" VerticalAlignment="Bottom" Loaded="ComboBox_Loaded" IsEnabled="False"/>

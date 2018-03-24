@@ -4,6 +4,17 @@ using System.Data.OleDb;
 using System.IO;
 using System.Reflection;
 
+
+/// <summary>
+/// *************************************************************
+/// 
+/// THIS FILE WAS NOT WRITTEN BY ME. THIS FILE WAS 
+/// PROVIDED TO AID ME IN A C# CLASS I HAVE TAKEN PREVIOUSLY
+/// 
+/// *************************************************************
+/// </summary>
+
+
 public class DataAccess
 {
     /// <summary>

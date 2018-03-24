@@ -29,10 +29,31 @@ namespace ScheduleMe.Views.ButtonViews
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            // enable/show buttons
             btnDone.Visibility = Visibility.Visible;
+            btnDone.IsEnabled = true;
             btnUpdate.IsEnabled = false;
+
+            txbAddress.IsEnabled = true;
+            txbEmail.IsEnabled = true;
+            txbName.IsEnabled = true;
+            txbPhone.IsEnabled = true;
+            txbPosition.IsEnabled = true;
+            txbUserName.IsEnabled = true;
         }
 
-       
+        private void btnDone_Click(object sender, RoutedEventArgs e)
+        {
+            // enable/show buttons
+            btnDone.Visibility = Visibility.Hidden;
+            btnUpdate.IsEnabled = true;
+
+            txbAddress.IsEnabled = false;
+            txbEmail.IsEnabled = false;
+            txbName.IsEnabled = false;
+            txbPhone.IsEnabled = false;
+            txbPosition.IsEnabled = false;
+            txbUserName.IsEnabled = false;
+        }
     }
 }

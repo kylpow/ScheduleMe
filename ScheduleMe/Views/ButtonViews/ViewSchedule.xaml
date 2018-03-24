@@ -10,21 +10,21 @@
              Height="380" >
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="81*"/>
-            <ColumnDefinition Width="469*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="121*"/>
+            <RowDefinition Height="69*"/>
         </Grid.RowDefinitions>
         <Calendar HorizontalAlignment="Center" 
-                  Height="196" 
-                  VerticalAlignment="Top"
-                  Width="174" 
+                  Height="200" 
+                  VerticalAlignment="Center"
+                  Width="184" 
                   IsManipulationEnabled="True" 
                   SelectionMode="MultipleRange" 
-                  Margin="106.741,0,188,0" Grid.Column="1"/>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="125"  Grid.Row="1"  Width="497" Grid.ColumnSpan="2" Margin="0,15,0,0">
+                  Margin="107,32,159,0" Grid.Column="1"/>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="125"  Width="498" Grid.ColumnSpan="2" Grid.RowSpan="1" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="27*"/>
                 <RowDefinition Height="98*"/>
@@ -68,16 +68,16 @@
                    VerticalAlignment="Top" Margin="7,0,7.333,0"/>
         </Grid>
 
-        <Label Content="Week of " 
+        <!--<Label Content="Today's Date: " 
                HorizontalAlignment="Left" 
-               Grid.Row="1" 
+               Grid.Row="0" 
                VerticalAlignment="Top"
-               FontSize="16"/>
-        <Label Content="[Today's Date]" 
+               FontSize="16" Height="31" Width="102" Grid.ColumnSpan="2"/>-->
+        <Label Name="lblTodaysDate"
+            Content="[Today's Date]" 
                HorizontalAlignment="Left" 
-               Grid.Row="1" 
-               Grid.Column="1"
+               Grid.Row="0"
                VerticalAlignment="Top"
-               FontSize="16"/>
+               FontSize="16" Loaded="lblTodaysDate_Loaded" Height="31" Margin="1,0,0,0" Grid.Column="0" Grid.ColumnSpan="2" />
     </Grid>
 </UserControl>

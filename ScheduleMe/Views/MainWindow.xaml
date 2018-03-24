@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ScheduleMe"
         mc:Ignorable="d"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="ScheduleMe" Height="360" Width="234" WindowStartupLocation="CenterScreen"
+        Title="ScheduleMe" Height="380" Width="234" WindowStartupLocation="CenterScreen"
         Closing="MetroWindow_Closing"
         >
     <Grid>
@@ -17,7 +17,7 @@
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
                  Width="120"
-                 Controls:TextBoxHelper.Watermark="USERNAME" />
+                 Controls:TextBoxHelper.Watermark="USERNAME" TextChanged="txtUserName_TextChanged" />
         
         <PasswordBox Name="txtPassword"
                  Controls:TextBoxHelper.Watermark="PASSWORD"
@@ -25,7 +25,7 @@
                  Height="23" 
                  Margin="50,103,0,0" 
                  VerticalAlignment="Top" 
-                 Width="120"/>
+                 Width="120" PasswordChanged="txtPassword_PasswordChanged"/>
 
 
         <Button Name="btnLogin"
@@ -45,7 +45,7 @@
         <Label Content="- OR -" 
                HorizontalAlignment="Left" 
                VerticalAlignment="Top" 
-               Margin="87,209,0,0"
+               Margin="85,229,0,0"
                FontSize="15"
                />
         
@@ -53,11 +53,17 @@
                 Content="Create New Account" 
                 Style="{StaticResource AccentedSquareButtonStyle}"
                 HorizontalAlignment="Left" 
-                Margin="50,267,0,0" 
+                Margin="50,290,0,0" 
                 VerticalAlignment="Top" 
                 Width="120" 
                 Click="CreateNewAccountClick"/>
         
+        <Label Name="lblStatus"
+               HorizontalAlignment="Left" 
+               Margin="40,198,0,0" 
+               VerticalAlignment="Top"
+               />
+
 
     </Grid>
 </Controls:MetroWindow>
