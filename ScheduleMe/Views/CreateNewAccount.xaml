@@ -69,7 +69,7 @@
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
                  Width="200"
-                 Controls:TextBoxHelper.Watermark="First Name" />
+                 Controls:TextBoxHelper.Watermark="First Name" TextChanged="TextBox_TextChanged" />
 
             <TextBox x:Name="txtLastName"
                  HorizontalAlignment="Right" 
@@ -78,7 +78,7 @@
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
                  Width="200"
-                 Controls:TextBoxHelper.Watermark="Last Name" />
+                 Controls:TextBoxHelper.Watermark="Last Name" TextChanged="TextBox_TextChanged" />
 
             <TextBox x:Name="txtAddress"
                  HorizontalAlignment="Right" 
@@ -87,26 +87,35 @@
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
                  Width="200"
-                 Controls:TextBoxHelper.Watermark="Address" />
+                 Controls:TextBoxHelper.Watermark="Address" TextChanged="TextBox_TextChanged" />
 
-            <TextBox x:Name="txtPhoneNumber1"
+            <TextBox x:Name="txtZip"
                  HorizontalAlignment="Right" 
                  Height="23" 
                  Margin="100,260,50,0" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
                  Width="200"
-                 Controls:TextBoxHelper.Watermark="Mobile Number" />
+                 Controls:TextBoxHelper.Watermark="Zip" TextChanged="TextBox_TextChanged" />
 
-            <TextBox x:Name="txtPhoneNumber2"
+            <TextBox x:Name="txtPhoneNumber1"
                  HorizontalAlignment="Right" 
                  Height="23" 
                  Margin="100,310,50,0" 
                  TextWrapping="NoWrap"
                  VerticalAlignment="Top" 
                  Width="200"
-                 Controls:TextBoxHelper.Watermark="Home Number (Optional)" />
-            
+                 Controls:TextBoxHelper.Watermark="Mobile Number" TextChanged="TextBox_TextChanged" />
+
+            <TextBox x:Name="txtPhoneNumber2"
+                 HorizontalAlignment="Right" 
+                 Height="23" 
+                 Margin="100,360,50,0" 
+                 TextWrapping="NoWrap"
+                 VerticalAlignment="Top" 
+                 Width="200"
+                 Controls:TextBoxHelper.Watermark="Home Number (Optional)" TextChanged="TextBox_TextChanged" />
+
             <TextBox x:Name="txtEstablishmentName"
                      Grid.Column="1"
                  HorizontalAlignment="Left" 
@@ -115,7 +124,7 @@
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
                  Width="200"
-                 Controls:TextBoxHelper.Watermark="Establishment Name" />
+                 Controls:TextBoxHelper.Watermark="Establishment Name" TextChanged="TextBox_TextChanged" />
 
             <TextBox x:Name="txtEmail"
                  Grid.Column="1"
@@ -124,14 +133,13 @@
                  Margin="50,160,0,0" 
                  VerticalAlignment="Top" 
                  Width="200"
-                 Controls:TextBoxHelper.Watermark="Email Address" />
+                 Controls:TextBoxHelper.Watermark="Email Address" TextChanged="TextBox_TextChanged" />
 
             <Label
                 Grid.Column="2"
                 Content="Create your credentials:"
                  HorizontalAlignment="Left" 
                 Height="30"
-                
                 />
 
             <TextBox x:Name="txtUserName"
@@ -142,7 +150,7 @@
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
                  Width="200"
-                 Controls:TextBoxHelper.Watermark="UserName" />
+                 Controls:TextBoxHelper.Watermark="UserName" TextChanged="TextBox_TextChanged" />
 
             <PasswordBox x:Name="txtPassword"
                      Grid.Column="2"
@@ -151,14 +159,24 @@
                  Margin="50,310,0,0" 
                  VerticalAlignment="Top" 
                  Width="200"
-                 Controls:TextBoxHelper.Watermark="Password" />
+                 Controls:TextBoxHelper.Watermark="Password" 
+                   PasswordChanged="PasswordBox_TextChanged"      />
+            
+            <PasswordBox x:Name="txtPassword2"
+                     Grid.Column="2"
+                 HorizontalAlignment="Left" 
+                 Height="23" 
+                 Margin="50,360,0,0" 
+                 VerticalAlignment="Top" 
+                 Width="200"
+                 Controls:TextBoxHelper.Watermark="Password" PasswordChanged="PasswordBox_TextChanged" />
 
             
             <Button  Name="btnCreateAccount"
                      Grid.Column="2"
                      HorizontalAlignment="Left" 
                      Height="23" 
-                     Margin="50,390,0,0" 
+                     Margin="50,420,0,0" 
                      VerticalAlignment="Top" 
                      Width="120"
                      Content="Create New Account"
@@ -169,16 +187,26 @@
                      Grid.Column="2"
                      HorizontalAlignment="Left" 
                      Height="23" 
-                     Margin="50,435,0,0" 
+                     Margin="190,420,0,0" 
                      VerticalAlignment="Top" 
                      Width="120"
                      Content="Cancel"
                      Style="{StaticResource AccentedSquareButtonStyle}" 
                      Click="btnCancelClick"/>
-
-           
             
-           
+            <Label Name="lblStatus"
+                Content="Please Enter Data Into Highlighted Fields" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Margin="0,50,0,0"
+                   Grid.ColumnSpan="2"
+                   Foreground="Red"
+                   FontSize="15"
+                   Visibility="Hidden"/>
+
+
+
+
         </Grid>
     </Grid>
 

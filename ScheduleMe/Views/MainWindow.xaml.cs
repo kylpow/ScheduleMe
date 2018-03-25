@@ -25,6 +25,8 @@ namespace ScheduleMe
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        public static MainWindow _mainWindow;
+        bool close = false;
         public MainWindow()
         {
             try
@@ -102,15 +104,16 @@ namespace ScheduleMe
                 this.Visibility = Visibility.Hidden;
 
                 //Create new window and show it
-                CreateNewAccount createNewAccount = new CreateNewAccount(this);
+                CreateNewAccount createNewAccount = new CreateNewAccount(_mainWindow);
                 createNewAccount.ShowDialog();
 
+                //if when we return it was successful new account, close window
+                //if when we return it was unsuccessful (cancel), show window
                 this.Visibility = Visibility.Visible;
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Hmm... Something went wrong!",
-                    "Uh-Oh!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
             }
         }
 

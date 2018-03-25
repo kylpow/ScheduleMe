@@ -100,6 +100,7 @@
     <Compile Include="IButtonViewModel.cs" />
     <Compile Include="Model\ObservableObject.cs" />
     <Compile Include="Model\ScheduleMeAccess.cs" />
+    <Compile Include="ViewModel\CreateNewAccountModel.cs" />
     <Compile Include="ViewModel\smEstablishment.cs" />
     <Compile Include="ViewModel\smEstablishmentRoles.cs" />
     <Compile Include="ViewModel\smPermissions.cs" />

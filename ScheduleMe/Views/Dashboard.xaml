@@ -10,7 +10,8 @@
         mc:Ignorable="d"
         Title="Dashboard" 
         ResizeMode="CanResizeWithGrip" 
-        WindowStartupLocation="CenterScreen" Height="583.333" Width="850">
+        WindowStartupLocation="CenterScreen" Height="583.333" Width="850"
+        Closing="MetroWindow_Closing">
 
     <!--<Window.Resources>
         <DataTemplate DataType="{x:Type }">

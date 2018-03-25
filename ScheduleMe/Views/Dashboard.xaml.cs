@@ -31,6 +31,7 @@ namespace ScheduleMe.Views
             _dashboard = this;
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Populates the User's buttons based on their permissions
         /// </summary>
@@ -86,6 +87,7 @@ namespace ScheduleMe.Views
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Populates the User's Schedule View
         /// </summary>
@@ -101,6 +103,16 @@ namespace ScheduleMe.Views
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Closes down the entire application on window exit.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
 
     }
 }
