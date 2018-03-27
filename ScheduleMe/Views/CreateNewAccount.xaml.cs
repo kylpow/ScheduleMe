@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -27,6 +28,7 @@ namespace ScheduleMe.Views
         //string connectionString = @"Data Source=KYLIEPC;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         string connectionString = @"Data Source=KYLIEPC;Initial Catalog=ScheduleMe;Integrated Security=True";
         SolidColorBrush skyBlue = Brushes.SkyBlue;
+
         public CreateNewAccount(MainWindow _mainWindow)
         {
             InitializeComponent();
@@ -46,32 +48,86 @@ namespace ScheduleMe.Views
                 {
                     using (SqlConnection sqlConn = new SqlConnection(connectionString))
                     {
+                        //Assuming if we get to this point, we have successful creation of an NEW account. Which means the user who created it
+                        //has all access to everything. The Stored procedures default to Admin.
+                        
+                        //Open Connection, start transactions for multiple Stored Procedures
                         sqlConn.Open();
-                        SqlCommand sqlCmd = new SqlCommand("usp_AddNewUser", sqlConn);
-                        sqlCmd.CommandType = System.Data.CommandType.StoredProcedure;
-                        sqlCmd.Parameters.AddWithValue("@firstName", txtFirstName.Text.Trim());
-                        sqlCmd.Parameters.AddWithValue("@lastName", txtLastName.Text.Trim());
-                        sqlCmd.Parameters.AddWithValue("@userName", txtUserName.Text.Trim());
-                        sqlCmd.Parameters.AddWithValue("@password", txtPassword.Password.Trim());
-                        sqlCmd.Parameters.AddWithValue("@emailAddress", txtEmail.Text.Trim());
-                        sqlCmd.Parameters.AddWithValue("@phoneNumber", txtPhoneNumber1.Text.Trim());
+                        SqlTransaction transaction = sqlConn.BeginTransaction();
+
+                        #region **** Add New User To Database ****
+
+                        SqlCommand sqlCmdAddNewUser = new SqlCommand("usp_AddNewUser", sqlConn, transaction);
+                        sqlCmdAddNewUser.CommandType = System.Data.CommandType.StoredProcedure;
+                        sqlCmdAddNewUser.Parameters.AddWithValue("@firstName", txtFirstName.Text.Trim());
+                        sqlCmdAddNewUser.Parameters.AddWithValue("@lastName", txtLastName.Text.Trim());
+                        sqlCmdAddNewUser.Parameters.AddWithValue("@userName", txtUserName.Text.Trim());
+                        sqlCmdAddNewUser.Parameters.AddWithValue("@password", txtPassword.Password.Trim());
+                        sqlCmdAddNewUser.Parameters.AddWithValue("@emailAddress", txtEmail.Text.Trim());
+                        sqlCmdAddNewUser.Parameters.AddWithValue("@phoneNumber", txtPhoneNumber1.Text.Trim());
                         if (string.IsNullOrEmpty(txtPhoneNumber2.Text.Trim()))
                         {
-                            sqlCmd.Parameters.AddWithValue("@phoneNumber2", DBNull.Value);
+                            sqlCmdAddNewUser.Parameters.AddWithValue("@phoneNumber2", DBNull.Value);
                         }else
                         {
-                            sqlCmd.Parameters.AddWithValue("@phoneNumber2", txtPhoneNumber2.Text.Trim());
+                            sqlCmdAddNewUser.Parameters.AddWithValue("@phoneNumber2", txtPhoneNumber2.Text.Trim());
                         }
-                        sqlCmd.Parameters.AddWithValue("@address", txtAddress.Text.Trim());
-                        sqlCmd.Parameters.AddWithValue("@zip", txtZip.Text.Trim());
-                        sqlCmd.ExecuteNonQuery();
+                        sqlCmdAddNewUser.Parameters.AddWithValue("@address", txtAddress.Text.Trim());
+                        sqlCmdAddNewUser.Parameters.AddWithValue("@zip", txtZip.Text.Trim());
 
+                        sqlCmdAddNewUser.ExecuteNonQuery();
+                        #endregion
+
+
+                        #region **** Add Establishment Data To Database ****
+
+                        SqlCommand sqlCmdAddEstablishment = new SqlCommand("usp_AddNewEstablishment", sqlConn, transaction);
+                        sqlCmdAddEstablishment.CommandType = System.Data.CommandType.StoredProcedure;
+                        sqlCmdAddEstablishment.Parameters.AddWithValue("@establishmentName", txtEstablishmentName.Text.Trim());
+                        sqlCmdAddEstablishment.ExecuteNonQuery();
+
+                        #endregion 
+
+                        #region **** Add New User Permissions To Database ****
+
+                        SqlCommand sqlCmdAddUserPermissions = new SqlCommand("usp_AddNewUserPermissions", sqlConn, transaction);
+                        sqlCmdAddUserPermissions.CommandType = System.Data.CommandType.StoredProcedure;
+                        sqlCmdAddUserPermissions.Parameters.AddWithValue("@establishmentName", txtEstablishmentName.Text.Trim());
+                        sqlCmdAddUserPermissions.ExecuteNonQuery();
+
+                        #endregion
+
+
+                        #region **** Add Roles Data To Database ****
+
+                        SqlCommand sqlCmdAddNewUserRole = new SqlCommand("usp_AddNewUserRole", sqlConn, transaction);
+                        sqlCmdAddNewUserRole.CommandType = System.Data.CommandType.StoredProcedure;
+                        sqlCmdAddNewUserRole.Parameters.AddWithValue("@establishmentName", txtEstablishmentName.Text.Trim());
+                        sqlCmdAddNewUserRole.ExecuteNonQuery();
+
+                        #endregion
+
+
+                        #region **** Add New User To Intermediary Tables
+
+                        SqlCommand sqlCmdAddUserToIntermediaryTables = new SqlCommand("usp_AddNewUserToIntermediaryTables", sqlConn, transaction);
+                        sqlCmdAddUserToIntermediaryTables.CommandType = System.Data.CommandType.StoredProcedure;
+                        sqlCmdAddUserToIntermediaryTables.Parameters.AddWithValue("@username", txtUserName.Text.Trim());
+                        sqlCmdAddUserToIntermediaryTables.Parameters.AddWithValue("@establishmentName", txtEstablishmentName.Text.Trim());
+                        sqlCmdAddUserToIntermediaryTables.ExecuteNonQuery();
+
+                        #endregion
+
+
+                        transaction.Commit();
+
+                        //Clears all textfields
                         Clear();
 
                         //Close Window
                         this.Close();
-                        //Pass data to dashboard... TODO: Will I need to? easier to just access it?
-                        //Dashboard dashboard = new Dashboard(userData);
+                        
+                        //New Dashboard
                         Dashboard dashboard = new Dashboard();
                         dashboard.ShowDialog();
                     }
@@ -79,11 +135,17 @@ namespace ScheduleMe.Views
             }
             catch (SqlException ex)
             {
-                if (ex.Message.Contains("AK_smUser_emailAddress"))
+                if (ex.Message.Contains("AK_smUser_userName"))
                 {
-                    MessageBox.Show("That email is already in use!", "Attention",
+                    MessageBox.Show("That username is already in use! Please choose another username.", "Attention",
                     MessageBoxButton.OK, MessageBoxImage.Error);
-                    EmailInUse();
+                    UserNameInUse();
+                }
+                else if (ex.Message.Contains("AK_smEstablishment_establishmentName"))
+                {
+                    MessageBox.Show("That establishment is already in use! Please choose another establishment name.", "Attention",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                    EstablishmentNameInUse();
                 }
                 else
                 {
@@ -103,10 +165,12 @@ namespace ScheduleMe.Views
             }
             catch (Exception ex)
             {
-                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+                MessageBox.Show("Hmm... Something isn't right...\n\n" + MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message,
+                    "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
+       
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Clears all textfields.
@@ -122,24 +186,45 @@ namespace ScheduleMe.Views
             }
             catch (Exception ex)
             {
-                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+                MessageBox.Show("Hmm... Something isn't right...\n\n" + MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message,
+                    "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Highlights email box.
         /// </summary>
-        private void EmailInUse()
+        private void UserNameInUse()
         {
             try
             {
-                txtEmail.Background = skyBlue;
+                txtUserName.Background = skyBlue;
             }
             catch (Exception ex)
             {
-                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+                MessageBox.Show("Hmm... Something isn't right...\n\n" + MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message,
+                    "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Highlights Establishment Name box.
+        /// </summary>
+        private void EstablishmentNameInUse()
+        {
+            try
+            {
+                txtEstablishmentName.Background = skyBlue;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hmm... Something isn't right...\n\n" + MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message,
+                    "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
@@ -234,7 +319,10 @@ namespace ScheduleMe.Views
             }
             catch(Exception ex)
             {
-                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+                MessageBox.Show("Hmm... Something isn't right...\n\n" + MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message,
+                    "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return false;
             }
         }
 
@@ -242,7 +330,7 @@ namespace ScheduleMe.Views
         /// <summary>
         /// Notifies user through a label to enter data into fields.
         /// </summary>
-        private bool EnterData()
+        private Boolean EnterData()
         {
             try
             {
@@ -252,7 +340,10 @@ namespace ScheduleMe.Views
             }
             catch(Exception ex)
             {
-                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+                MessageBox.Show("Hmm... Something isn't right...\n\n" + MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message,
+                  "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return false;
             }
         }
 
@@ -270,7 +361,8 @@ namespace ScheduleMe.Views
             }
             catch (Exception ex)
             {
-                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+                MessageBox.Show("Hmm... Something isn't right...\n\n" + MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message,
+                   "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

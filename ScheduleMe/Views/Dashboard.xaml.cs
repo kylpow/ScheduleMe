@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -22,13 +23,15 @@ namespace ScheduleMe.Views
     public partial class Dashboard : MetroWindow
     {
         public static Dashboard _dashboard;
+        string connectionString = @"Data Source=KYLIEPC;Initial Catalog=ScheduleMe;Integrated Security=True";
 
-    public Dashboard()
+        public Dashboard()
         {
-            InitializeComponent();
-            PopulateButtons();
-            PopulateScheduleView();
             _dashboard = this;
+
+            InitializeComponent();
+            PopulateScheduleView();
+            PopulateButtons();
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,51 +42,54 @@ namespace ScheduleMe.Views
         {
             try
             {
-                //TODO: if user the user has permissions via database
-                //populate buttons based on that. 
+                using (SqlConnection sqlConn = new SqlConnection(connectionString))
+                {
+                    //TODO: if user the user has permissions via database
+                    //populate buttons based on that. 
 
-                //View Schedule
-                Buttons.ButtonViewSchedule btnViewSchedule = new Buttons.ButtonViewSchedule();
-                btnViewSchedule.Margin = new Thickness(0, 5, 0, 5);
-                panelButton.Children.Add(btnViewSchedule);
+                    //TODO: Get user's first name
+                    //lblGreeting.Content += username.ToUpper() + "!";
 
-                //Personal Info
-                Buttons.ButtonPersonalInfo btnPersonalInfo = new Buttons.ButtonPersonalInfo();
-                btnPersonalInfo.Margin = new Thickness(0, 5, 0, 5);
-                panelButton.Children.Add(btnPersonalInfo);
+                    //View Schedule
+                    Buttons.ButtonViewSchedule btnViewSchedule = new Buttons.ButtonViewSchedule();
+                    btnViewSchedule.Margin = new Thickness(0, 5, 0, 5);
+                    panelButton.Children.Add(btnViewSchedule);
 
-                //Availability Button
-                Buttons.Availability btnavailability = new Buttons.Availability();
-                btnavailability.Margin = new Thickness(0, 5, 0, 5);
-                panelButton.Children.Add(btnavailability);
+                    //Personal Info
+                    Buttons.ButtonPersonalInfo btnPersonalInfo = new Buttons.ButtonPersonalInfo();
+                    btnPersonalInfo.Margin = new Thickness(0, 5, 0, 5);
+                    panelButton.Children.Add(btnPersonalInfo);
 
-                //Manage Employees
-                Buttons.ManageEmployees btnManageEmployees = new Buttons.ManageEmployees();
-                btnManageEmployees.Margin = new Thickness(0, 5, 0, 5);
-                panelButton.Children.Add(btnManageEmployees);
+                    //Availability Button
+                    Buttons.Availability btnavailability = new Buttons.Availability();
+                    btnavailability.Margin = new Thickness(0, 5, 0, 5);
+                    panelButton.Children.Add(btnavailability);
 
-                //Manage Shifts
-                Buttons.ManageShifts btnManageShifts = new Buttons.ManageShifts();
-                btnManageShifts.Margin = new Thickness(0, 5, 0, 5);
-                panelButton.Children.Add(btnManageShifts);
+                    //Manage Employees
+                    Buttons.ManageEmployees btnManageEmployees = new Buttons.ManageEmployees();
+                    btnManageEmployees.Margin = new Thickness(0, 5, 0, 5);
+                    panelButton.Children.Add(btnManageEmployees);
 
-                //Requests
-                Buttons.Requests btnRequests = new Buttons.Requests();
-                btnRequests.Margin = new Thickness(0, 5, 0, 5);
-                panelButton.Children.Add(btnRequests);
+                    //Manage Shifts
+                    Buttons.ManageShifts btnManageShifts = new Buttons.ManageShifts();
+                    btnManageShifts.Margin = new Thickness(0, 5, 0, 5);
+                    panelButton.Children.Add(btnManageShifts);
 
-                //View Shifts
-                Buttons.ViewShifts btnViewShifts = new Buttons.ViewShifts();
-                btnViewShifts.Margin = new Thickness(0, 5, 0, 5);
-                panelButton.Children.Add(btnViewShifts);
+                    //Requests
+                    Buttons.Requests btnRequests = new Buttons.Requests();
+                    btnRequests.Margin = new Thickness(0, 5, 0, 5);
+                    panelButton.Children.Add(btnRequests);
 
+                    //View Shifts
+                    Buttons.ViewShifts btnViewShifts = new Buttons.ViewShifts();
+                    btnViewShifts.Margin = new Thickness(0, 5, 0, 5);
+                    panelButton.Children.Add(btnViewShifts);
+                }
             }
             catch (Exception ex)
             {
-                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
-
-                //MessageBox.Show("Sorry, something went wrong! \n\n[Dashboard.xaml.cs]", "Error",
-                //   MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Uh-Oh! Something's not right..." + MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message,
+                     "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
@@ -99,7 +105,8 @@ namespace ScheduleMe.Views
             }
             catch (Exception ex)
             {
-                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+                MessageBox.Show("Uh-Oh! Something's not right..." + MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message,
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 

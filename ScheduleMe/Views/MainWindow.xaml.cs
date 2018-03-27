@@ -17,6 +17,8 @@ using ScheduleMe.Views;
 
 using MahApps.Metro.Controls;
 using System.Reflection;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace ScheduleMe
 {
@@ -25,24 +27,19 @@ namespace ScheduleMe
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+
+        //TODO: Refactor SQL data out
+        //TODO: Log errors (including InnerExceptions!)
         public static MainWindow _mainWindow;
-        bool close = false;
+        string connectionString = @"Data Source=KYLIEPC;Initial Catalog=ScheduleMe;Integrated Security=True";
+        string userName = "";
+
         public MainWindow()
         {
-            try
-
-            {
-                InitializeComponent();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
-
-                // Log error (including InnerExceptions!)
-                // Handle exception
-            }
+            InitializeComponent();
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Takes user to dashboard window on successful login
         /// </summary>
@@ -52,46 +49,98 @@ namespace ScheduleMe
         {
             try
             {
-                //if (txtUserName.Text == "" || string.IsNullOrEmpty(txtUserName.Text.ToString()))
-                //{
-                //    lblStatus.Foreground = Brushes.Red;
-                //    lblStatus.Content = "Please enter a Username";
-                //}
-                //else if (txtPassword.Password == "" || string.IsNullOrEmpty(txtPassword.Password.ToString()))
-                //{
-                //    lblStatus.Foreground = Brushes.Red;
-                //    lblStatus.Content = "Please enter a Password";
-                //}
-                //else
-                //{
-                    //TODO - Check database for appropriate credentials - Credential Check:
-                    //On valid login:
-                    //If valid, pass userData to Dashboard Form
-                    //On invalid login
-                    //Window/label stating to try again - forgot password prompt/show(?) etc.
+                if (CheckLoginFields())
+                {
+                    using (SqlConnection sqlConn = new SqlConnection(connectionString))
+                    {
+                        sqlConn.Open();
+                        userName = txtUserName.Text.ToString();
+                        string newCon = "Select userName from smUser where username = '"+ userName +"' and password = '"+ txtPassword.Password.ToString() + "'";
 
+                        SqlDataAdapter adp = new SqlDataAdapter(newCon, sqlConn);
+                        DataSet ds = new DataSet();
 
+                        adp.Fill(ds);
 
-                    //Hide startup page
-                    this.Visibility = Visibility.Hidden;
+                        DataTable dt = ds.Tables[0];
 
-                    //TODO: 
-                    //Dashboard dashboard = new Dashboard(userData);
-                    Dashboard dashboard = new Dashboard();
-                    dashboard.ShowDialog();
+                        //On valid login:
+                        //If valid, pass userData to Dashboard Form
+                        if (dt.Rows.Count >= 1)
+                        {
+                            //Hide startup page
+                            this.Visibility = Visibility.Hidden;
 
-                    //TODO: Close mainWindow - on valid login, handle this in the dashboard. The code doesn't 
-                    //return to this line until after so we want to close the window. 
-                    this.Close();
-                //}
+                            //TODO: 
+                            //Dashboard dashboard = new Dashboard(userData);
+                            Dashboard dashboard = new Dashboard();
+                            dashboard.ShowDialog();
+
+                            //TODO: Close mainWindow - on valid login, handle this in the dashboard. The code doesn't 
+                            //return to this line until after so we want to close the window. 
+                            this.Close();
+                        }
+                        else //Invalid Login
+                        {
+                            MessageBox.Show("Invalid Login Information. Please try again.", "Oops",
+                                MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        }
+
+                    }
+                }
             }
-            catch
+            catch (SqlException ex)
             {
-                MessageBox.Show("Hmm... Something went wrong!",
-                    "Uh-Oh!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    string str;
+
+                    str = "\n" + "Message: " + ex.Message;
+                    str += "\n\n" + "Procedure: " + ex.Procedure.ToString();
+                    str += "\n" + "Line Number: " + ex.LineNumber.ToString();
+                    str += "\n" + "Source: " + ex.Source;
+                    str += "\n" + "Number: " + ex.Number.ToString();
+
+                    MessageBox.Show("Hmm... Something isn't right...\n\n" + str, "Attention",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hmm... Something isn't right...\n\n" + MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message,
+                    "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Checks the login fields are filled out. Alerts the user if either box is not filled out.
+        /// </summary>
+        /// <returns></returns>
+        private Boolean CheckLoginFields()
+        {
+            try
+            {
+                if (txtUserName.Text == "" || string.IsNullOrEmpty(txtUserName.Text.ToString()))
+                {
+                    lblStatus.Foreground = Brushes.Red;
+                    lblStatus.Content = "Please enter a Username";
+                    return false;
+                }
+                else if (txtPassword.Password == "" || string.IsNullOrEmpty(txtPassword.Password.ToString()))
+                {
+                    lblStatus.Foreground = Brushes.Red;
+                    lblStatus.Content = "Please enter a Password";
+                    return false;
+                }
+                else { return true; }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hmm... Something isn't right...\n\n" + MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message,
+                    "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Go to Create New Account Window
         /// </summary>
@@ -113,20 +162,39 @@ namespace ScheduleMe
             }
             catch (Exception ex)
             {
-                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+                MessageBox.Show("Hmm... Something isn't right...\n\n" + MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message,
+                   "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Closes the entire application on click of 'X'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Clears the status label on text change of the username textbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtUserName_TextChanged(object sender, TextChangedEventArgs e)
         {
             lblStatus.Content = "";
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Clears the status label on text change of the password passwordbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
             lblStatus.Content = "";

@@ -61,7 +61,6 @@ namespace ScheduleMe.Views.ButtonViews
             }
             else
                 chkSundayAny.IsChecked = false;
-            
         }
 
         private void chkSundayNone_Checked(object sender, RoutedEventArgs e)
@@ -76,7 +75,6 @@ namespace ScheduleMe.Views.ButtonViews
             }
             else
                 chkSundayNone.IsChecked = false;
-            
         }
 
         private void chkMondayAny_Checked(object sender, RoutedEventArgs e)
