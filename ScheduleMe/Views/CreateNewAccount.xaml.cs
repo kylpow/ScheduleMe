@@ -88,6 +88,7 @@ namespace ScheduleMe.Views
 
                         #endregion 
 
+
                         #region **** Add New User Permissions To Database ****
 
                         SqlCommand sqlCmdAddUserPermissions = new SqlCommand("usp_AddNewUserPermissions", sqlConn, transaction);
@@ -121,14 +122,16 @@ namespace ScheduleMe.Views
 
                         transaction.Commit();
 
+                        //New Dashboard
+                        Dashboard dashboard = new Dashboard(txtUserName.Text.Trim());
+
                         //Clears all textfields
                         Clear();
 
                         //Close Window
                         this.Close();
                         
-                        //New Dashboard
-                        Dashboard dashboard = new Dashboard();
+                        //Show Dashboard
                         dashboard.ShowDialog();
                     }
                 }

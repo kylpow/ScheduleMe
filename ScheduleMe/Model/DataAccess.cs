@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
-
-
-/// <summary>
-/// *************************************************************
-/// 
-/// THIS FILE WAS NOT WRITTEN BY ME. THIS FILE WAS 
-/// PROVIDED TO AID ME IN A C# CLASS I HAVE TAKEN PREVIOUSLY
-/// 
-/// *************************************************************
-/// </summary>
 
 
 public class DataAccess
@@ -27,9 +18,7 @@ public class DataAccess
     /// </summary>
     public DataAccess()
     {
-        sConnectionString = @"Data Source=KYLIEPC;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        //Server=localhost\SQLEXPRESS;Database=ScheduleMe;Trusted_Connection=True;
-        //Data Source=KYLIEPC;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+        sConnectionString = @"Data Source=KYLIEPC;Initial Catalog=ScheduleMe;Integrated Security=True";
     }
 
     /// <summary>
@@ -47,20 +36,20 @@ public class DataAccess
             //Create a new DataSet
             DataSet ds = new DataSet();
 
-            using (OleDbConnection conn = new OleDbConnection(sConnectionString))
+            using (SqlConnection sqlConn = new SqlConnection(sConnectionString))
             {
-                using (OleDbDataAdapter adapter = new OleDbDataAdapter())
+                using (SqlDataAdapter adp = new SqlDataAdapter())
                 {
 
                     //Open the connection to the database
-                    conn.Open();
+                    sqlConn.Open();
 
                     //Add the information for the SelectCommand using the SQL statement and the connection object
-                    adapter.SelectCommand = new OleDbCommand(sSQL, conn);
-                    adapter.SelectCommand.CommandTimeout = 0;
+                    adp.SelectCommand = new SqlCommand(sSQL, sqlConn);
+                    adp.SelectCommand.CommandTimeout = 0;
 
                     //Fill up the DataSet with data
-                    adapter.Fill(ds);
+                    adp.Fill(ds);
                 }
             }
 
@@ -75,6 +64,7 @@ public class DataAccess
             throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
         }
     }
+
 
     /// <summary>
     /// This method takes an SQL statment that is passed in and executes it.  The resulting single 
@@ -157,6 +147,8 @@ public class DataAccess
             throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
         }
     }
+
+    //TODO: ExecuteProcedure
 
 
 }

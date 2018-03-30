@@ -19,6 +19,7 @@ using MahApps.Metro.Controls;
 using System.Reflection;
 using System.Data.SqlClient;
 using System.Data;
+using ScheduleMe.Model;
 
 namespace ScheduleMe
 {
@@ -27,15 +28,12 @@ namespace ScheduleMe
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-
-        //TODO: Refactor SQL data out
-        //TODO: Log errors (including InnerExceptions!)
         public static MainWindow _mainWindow;
-        string connectionString = @"Data Source=KYLIEPC;Initial Catalog=ScheduleMe;Integrated Security=True";
-        string userName = "";
+        private ScheduleMeAccess sma;
 
         public MainWindow()
         {
+            sma = new ScheduleMeAccess();
             InitializeComponent();
         }
 
@@ -51,41 +49,29 @@ namespace ScheduleMe
             {
                 if (CheckLoginFields())
                 {
-                    using (SqlConnection sqlConn = new SqlConnection(connectionString))
+                    //Validate login info - returns row count. 
+                    var user = sma.ValidateUserNamePassword(txtUserName.Text.ToString(), txtPassword.Password.ToString());
+
+                    //On valid login:
+                    //If valid, row count == 1
+                    if (user == 1)
                     {
-                        sqlConn.Open();
-                        userName = txtUserName.Text.ToString();
-                        string newCon = "Select userName from smUser where username = '"+ userName +"' and password = '"+ txtPassword.Password.ToString() + "'";
+                        //Hide startup page
+                        this.Visibility = Visibility.Hidden;
 
-                        SqlDataAdapter adp = new SqlDataAdapter(newCon, sqlConn);
-                        DataSet ds = new DataSet();
+                        //TODO: 
+                        //Dashboard dashboard = new Dashboard(userData);
+                        Dashboard dashboard = new Dashboard(txtUserName.Text.Trim());
+                        dashboard.ShowDialog();
 
-                        adp.Fill(ds);
-
-                        DataTable dt = ds.Tables[0];
-
-                        //On valid login:
-                        //If valid, pass userData to Dashboard Form
-                        if (dt.Rows.Count >= 1)
-                        {
-                            //Hide startup page
-                            this.Visibility = Visibility.Hidden;
-
-                            //TODO: 
-                            //Dashboard dashboard = new Dashboard(userData);
-                            Dashboard dashboard = new Dashboard();
-                            dashboard.ShowDialog();
-
-                            //TODO: Close mainWindow - on valid login, handle this in the dashboard. The code doesn't 
-                            //return to this line until after so we want to close the window. 
-                            this.Close();
-                        }
-                        else //Invalid Login
-                        {
-                            MessageBox.Show("Invalid Login Information. Please try again.", "Oops",
-                                MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                        }
-
+                        //TODO: Close mainWindow - on valid login, handle this in the dashboard. The code doesn't 
+                        //return to this line until after so we want to close the window. 
+                        this.Close();
+                    }
+                    else //Invalid Login
+                    {
+                        MessageBox.Show("Invalid Login Information. Please try again.", "Oops",
+                            MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
                 }
             }

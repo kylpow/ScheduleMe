@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace ScheduleMe.Model
 {
-    class smUser : ObservableObject
+    public class smUser : ObservableObject
     {
+
+       
+
         private int _smUser_id;
         private string _firstName;
         private string _lastName;
