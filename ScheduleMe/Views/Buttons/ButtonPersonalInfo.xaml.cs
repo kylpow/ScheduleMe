@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ScheduleMe.Model;
 using ScheduleMe.Views.ButtonViews;
 
 namespace ScheduleMe.Views.Buttons
@@ -23,8 +25,11 @@ namespace ScheduleMe.Views.Buttons
     /// 
     public partial class ButtonPersonalInfo : UserControl
     {
-        public ButtonPersonalInfo()
+        private ObservableCollection<smUser> user;
+
+        public ButtonPersonalInfo(ObservableCollection<smUser> user)
         {
+            this.user = user;
             InitializeComponent();
         }
 
@@ -34,7 +39,7 @@ namespace ScheduleMe.Views.Buttons
             {
                 //Clear panelView of anything and add new View
                 Dashboard._dashboard.panelView.Children.Clear();
-                Dashboard._dashboard.panelView.Children.Add(new ViewPersonalInfo(Dashboard._dashboard));
+                Dashboard._dashboard.panelView.Children.Add(new ViewPersonalInfo(Dashboard._dashboard, user));
             }
             catch (Exception ex)
             {

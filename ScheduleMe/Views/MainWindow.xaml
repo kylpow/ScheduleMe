@@ -25,7 +25,8 @@
                  Height="23" 
                  Margin="50,103,0,0" 
                  VerticalAlignment="Top" 
-                 Width="120" PasswordChanged="txtPassword_PasswordChanged"/>
+                 Width="120" PasswordChanged="txtPassword_PasswordChanged" 
+                     />
 
 
         <Button Name="btnLogin"
@@ -35,7 +36,8 @@
             VerticalAlignment="Top" 
             Width="75"
             Style="{StaticResource AccentedSquareButtonStyle}"
-            Click="LoginClick"/>
+            Click="LoginClick"
+                IsDefault="True"/>
 
         <Label Content="Welcome..." 
                HorizontalAlignment="Left" 

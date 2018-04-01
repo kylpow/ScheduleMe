@@ -27,7 +27,7 @@ namespace ScheduleMe.Views
     {
         public static Dashboard _dashboard;
         private ScheduleMeAccess sma;
-        public smUser smUser;
+        //public smUser smUser;
         private string username;
         private ObservableCollection<smUser> user;
 
@@ -62,9 +62,8 @@ namespace ScheduleMe.Views
 
                     sqlConn.Open();
 
-                    //TODO: Get user's first name
+                    //Get user's first name
                     GetUserNameForGreeting();
-                    
 
                     //SqlCommand sqlGetUserPermissions = new SqlCommand("usp_GetUserPermissions", sqlConn);
                     SqlCommand sqlGetUserPermissions = new SqlCommand("select * from smPermissions;", sqlConn);
@@ -91,14 +90,14 @@ namespace ScheduleMe.Views
                     }
                     
                     //View Schedule - every user should have this
-                    Buttons.ButtonViewSchedule btnViewSchedule = new Buttons.ButtonViewSchedule();
+                    Buttons.ButtonViewSchedule btnViewSchedule = new Buttons.ButtonViewSchedule(user);
                     btnViewSchedule.Margin = new Thickness(0, 5, 0, 5);
                     panelButton.Children.Add(btnViewSchedule);
 
                     if (permissionsItem.UpdatePersonalInfo)
                     {
                         //Personal Info
-                        Buttons.ButtonPersonalInfo btnPersonalInfo = new Buttons.ButtonPersonalInfo();
+                        Buttons.ButtonPersonalInfo btnPersonalInfo = new Buttons.ButtonPersonalInfo(user);
                         btnPersonalInfo.Margin = new Thickness(0, 5, 0, 5);
                         panelButton.Children.Add(btnPersonalInfo);
                     }
@@ -171,7 +170,7 @@ namespace ScheduleMe.Views
         {
             try
             {
-                panelView.Children.Add(new ViewSchedule());
+                panelView.Children.Add(new ViewSchedule(user));
             }
             catch (Exception ex)
             {
